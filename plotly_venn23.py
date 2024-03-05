@@ -47,7 +47,18 @@ def venn23(sets, labels, colors, title=None, opacity=0.6):
         ))
 
     # draw label annotations
-    for label in venn.set_labels + venn.subset_labels:
+    for label in venn.set_labels:
+        x, y = label.get_position()
+        txt = label.get_text()
+        fig.add_annotation(
+            x=x,
+            y=y,
+            text=f'<b>{txt}</b>',
+            showarrow=False
+        )
+
+    # draw label annotations
+    for label in venn.subset_labels:
         x, y = label.get_position()
         txt = label.get_text()
         fig.add_annotation(
